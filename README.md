@@ -50,7 +50,8 @@ Layihənin işləməsi üçün PostgreSQL-də verilənlər bazası yaradılmalı
 
 
   
-📖 API Sənədləşdirməsi (Swagger UI)
+ 📖 API Sənədləşdirməsi (Swagger UI)
+ 
+Tətbiqi lokalda işə saldıqdan sonra bütün endpointləri test etmək üçün aşağıdakı keçidə daxil ola bilərsiniz:
 
-Tətbiq işə düşdükdən sonra bütün endpointləri test etmək üçün aşağıdakı keçidə daxil ola bilərsiniz:
-- `http://localhost:8080/swagger-ui/index.html`
+- [Swagger UI (Local)](http://localhost:8080/swagger-ui/index.html)

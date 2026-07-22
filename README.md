@@ -112,13 +112,13 @@ spring:
 ### 1. Repository-ni clone edin
 
 ```bash
-git clone https://github.com/ekberovafiruze40/library-management-system.git
+git clone https://github.com/ekberovafiruze40/library-management.git
 ```
 
 ### 2. Layihə qovluğuna keçin
 
 ```bash
-cd library-management-system
+cd library-management
 ```
 
 ### 3. Database konfiqurasiyasını tənzimləyin

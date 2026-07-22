@@ -4,17 +4,17 @@ Spring Boot və PostgreSQL istifadə olunaraq hazırlanmış, qatlı arxitektura
 
  🚀 Layihənin Xülasəsi və Proseslər
 Bu sistem kitabxananın əsas əməliyyatlarını rəqəmsallaşdırmaq üçün nəzərdə tutulub. Layihədə əsasən aşağıdakı modullar və əlaqələr mövcuddur:
--Book (Kitab):** Kitabların qeydiyyatı, məlumatlarının yenilənməsi, silinməsi və siyahılanması.
--Author (Müəllif):** Kitabların müəllifləri ilə əlaqəli struktur və idarəetmə.
--Member (Üzv):** Kitabxanadan istifadə edən oxucuların/üzvlərin qeydiyyatı və idarə olunması.
+- Book (Kitab): Kitabların qeydiyyatı, məlumatlarının yenilənməsi, silinməsi və siyahılanması.
+- Author (Müəllif): Kitabların müəllifləri ilə əlaqəli struktur və idarəetmə.
+- Member (Üzv): Kitabxanadan istifadə edən oxucuların/üzvlərin qeydiyyatı və idarə olunması.
 
  🛠️ İstifadə Edilən Texnologiyalar
--Java 17
--Spring Boot
--Spring Data JPA (Hibernate)
--PostgreSQL
--Springdoc OpenAPI (Swagger)
--Maven
+ - Java 17
+ - Spring Boot
+ - Spring Data JPA (Hibernate)
+ - PostgreSQL
+ - Springdoc OpenAPI (Swagger)
+ - Maven
 
  ✨ Əsas Xüsusiyyətlər
 - **Qatlı Arxitektura:** `Controller` → `Service` → `Repository` strukturu qorunub və birbaşa `Entity` əvəzinə `DTO` obyektlərindən istifadə edilib.
@@ -36,6 +36,8 @@ Layihənin işləməsi üçün PostgreSQL-də verilənlər bazası yaradılmalı
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  
 📖 API Sənədləşdirməsi (Swagger UI)
 Tətbiq işə düşdükdən sonra bütün endpointləri test etmək üçün aşağıdakı keçidə daxil ola bilərsiniz:
 - `http://localhost:8080/swagger-ui/index.html`

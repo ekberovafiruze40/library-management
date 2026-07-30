@@ -19,7 +19,7 @@ public class BookCreateDto {
     private String isbn;
 
     @NotNull(message = "Nəşr ili qeyd olunmalıdır")
-    private Integer publicationYear;
+    private Integer publishYear;
 
     @NotNull(message = "Yazar ID-si qeyd olunmalıdır")
     private Long authorId;

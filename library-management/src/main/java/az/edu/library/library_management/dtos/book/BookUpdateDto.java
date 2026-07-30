@@ -1,5 +1,7 @@
 package az.edu.library.library_management.dtos.book;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +12,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookUpdateDto {
+    @NotBlank(message = "Kitab adı boş ola bilməz")
     private String title;
+
+    @NotBlank(message = "ISBN boş ola bilməz")
     private String isbn;
-    private int publicationYear;
+
+    @NotNull(message = "Nəşr ili qeyd olunmalıdır")
+    private Integer publishYear;
+
+    @NotNull(message = "Yazar ID-si qeyd olunmalıdır")
     private Long authorId;
 }

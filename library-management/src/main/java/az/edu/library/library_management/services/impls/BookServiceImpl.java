@@ -3,6 +3,7 @@ package az.edu.library.library_management.services.impls;
 import az.edu.library.library_management.dtos.book.BookCreateDto;
 import az.edu.library.library_management.dtos.book.BookResponseDto;
 import az.edu.library.library_management.dtos.book.BookUpdateDto;
+import az.edu.library.library_management.exceptions.ResourceNotFoundException;
 import az.edu.library.library_management.models.Author;
 import az.edu.library.library_management.models.Book;
 import az.edu.library.library_management.repositories.AuthorRepository;
@@ -31,19 +32,19 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookResponseDto getBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(()-> new RuntimeException("Book not found with id: " + id));
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + id));
         return mapToResponseDto(book);
     }
 
     @Override
     public BookResponseDto createBook(BookCreateDto createDto) {
         Author author = authorRepository.findById(createDto.getAuthorId())
-                .orElseThrow(()-> new RuntimeException("Author not found with id: " + createDto.getAuthorId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + createDto.getAuthorId()));
 
         Book book = modelMapper.map(createDto, Book.class);
 
         book.setId(null);
-
         book.setAuthor(author);
 
         Book savedBook = bookRepository.save(book);
@@ -52,12 +53,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookResponseDto updateBook(Long id, BookUpdateDto updateDto) {
-        Book book = bookRepository.findById(id).orElseThrow(()-> new RuntimeException("Book not found with id: " + id));
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + id));
+
         if (updateDto.getAuthorId() != null){
             Author author = authorRepository.findById(updateDto.getAuthorId())
-                    .orElseThrow(()-> new RuntimeException("Author not found with id: " + updateDto.getAuthorId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + updateDto.getAuthorId()));
             book.setAuthor(author);
         }
+
         modelMapper.map(updateDto, book);
         Book updatedBook = bookRepository.save(book);
         return mapToResponseDto(updatedBook);
@@ -65,9 +69,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(Long id) {
-
         if (!bookRepository.existsById(id)){
-            throw  new RuntimeException("Book not found with id: " + id);
+            throw new ResourceNotFoundException("Book not found with id: " + id);
         }
         bookRepository.deleteById(id);
     }

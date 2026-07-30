@@ -3,6 +3,7 @@ package az.edu.library.library_management.services.impls;
 import az.edu.library.library_management.dtos.author.AuthorCreateDto;
 import az.edu.library.library_management.dtos.author.AuthorResponseDto;
 import az.edu.library.library_management.dtos.author.AuthorUpdateDto;
+import az.edu.library.library_management.exceptions.ResourceNotFoundException;
 import az.edu.library.library_management.models.Author;
 import az.edu.library.library_management.repositories.AuthorRepository;
 import az.edu.library.library_management.services.AuthorService;
@@ -30,7 +31,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorResponseDto getAuthorById(Long id) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Author not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found with id: " + id));
         return modelMapper.map(author, AuthorResponseDto.class);
     }
 
@@ -44,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorResponseDto updateAuthor(Long id, AuthorUpdateDto updateDto) {
         Author author = authorRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Author not found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found with id " + id));
 
         modelMapper.map(updateDto, author);
         Author updatedAuthor = authorRepository.save(author);
@@ -53,9 +54,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void deleteAuthor(Long id) {
-
         if (!authorRepository.existsById(id)){
-            throw new RuntimeException("Author not found with id: " + id);
+            throw new ResourceNotFoundException("Author not found with id: " + id);
         }
 
         authorRepository.deleteById(id);
